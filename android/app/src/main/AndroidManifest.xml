@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.hafta_1_odev">
+  package="com.calculateprice">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

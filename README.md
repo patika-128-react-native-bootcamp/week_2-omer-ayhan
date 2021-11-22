@@ -1,1 +1,1 @@
-# Patika Hafta 1 Ödev
+# Week 1 Homework Price List Calculator
