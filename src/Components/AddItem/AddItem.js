@@ -1,13 +1,13 @@
 import React, { memo } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import styles from "./AddItem.style";
 
 function AddItem({ items, setItems }) {
   const [title, setTitle] = React.useState("");
-  const [price, setPrice] = React.useState("");
+  const [price, setPrice] = React.useState();
   const clearFields = () => {
     setTitle("");
-    setPrice("");
+    setPrice();
   };
   const handleSubmit = () => {
     const newItem = {
@@ -16,6 +16,12 @@ function AddItem({ items, setItems }) {
       price,
       timestamp: new Date().getTime(),
     };
+
+    if (!+price) {
+      // checks if price input value is a number
+      Alert.alert("Price has to be a number");
+      return;
+    }
 
     const isDuplicate = items.find(
       (item) => item.title === title && item.price === price // find if there is any duplicate item

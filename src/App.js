@@ -14,7 +14,6 @@ export default function App() {
 
   useEffect(() => {
     let isMounted = true;
-    console.log("useEffect: ", filterType);
     if (isMounted) {
       switch (filterType) {
         case "Desc":
