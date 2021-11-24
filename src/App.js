@@ -1,6 +1,7 @@
 import React from "react";
 import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import AddItem from "./Components/AddItem";
+import FilterItems from "./Components/FilterItems";
 import ItemList from "./Components/ItemList";
 
 export default function App() {
@@ -13,7 +14,7 @@ export default function App() {
     {
       id: "#1316",
       title: "Kola",
-      price: "2.50",
+      price: "1.50",
     },
   ]);
 
@@ -21,6 +22,7 @@ export default function App() {
   const extractKey = ({ id }) => id.toString();
   return (
     <SafeAreaView style={styles.container}>
+      <FilterItems />
       <View style={styles.list_container}>
         <FlatList
           keyExtractor={extractKey}
@@ -28,9 +30,7 @@ export default function App() {
           renderItem={renderItems}
         />
       </View>
-      <View style={styles.input_container}>
-        <AddItem setItems={setItems} />
-      </View>
+      <AddItem setItems={setItems} />
     </SafeAreaView>
   );
 }
@@ -41,8 +41,5 @@ const styles = StyleSheet.create({
   },
   list_container: {
     flex: 1,
-  },
-  input_container: {
-    flex: 0,
   },
 });
