@@ -1,9 +1,9 @@
 import React, { memo } from "react";
 import { View } from "react-native";
 import FilterButton from "./FilterButton";
-import styles from "./FilterItems.style";
+import styles from "./FilterSection.style";
 
-function FilterItems({ filterType, setFilterType, setItems, items }) {
+function FilterSection({ filterType, setFilterType, setItems, items }) {
   return (
     <View style={styles.container}>
       <FilterButton
@@ -31,4 +31,4 @@ function FilterItems({ filterType, setFilterType, setItems, items }) {
   );
 }
 
-export default memo(FilterItems);
+export default memo(FilterSection);

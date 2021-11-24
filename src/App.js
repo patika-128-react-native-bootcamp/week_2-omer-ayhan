@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import AddItem from "./Components/AddItem";
-import FilterItems from "./Components/FilterItems";
+import FilterSection from "./Components/FilterSection";
 import ItemList from "./Components/ItemList";
 
 export default function App() {
@@ -18,25 +18,13 @@ export default function App() {
     if (isMounted) {
       switch (filterType) {
         case "Desc":
-          setItems(
-            items.sort((a, b) => {
-              return b.price - a.price;
-            })
-          );
+          setItems(items.sort((a, b) => b.price - a.price));
           break;
         case "Asc":
-          setItems(
-            items.sort((a, b) => {
-              return a.price - b.price;
-            })
-          );
+          setItems(items.sort((a, b) => a.price - b.price));
           break;
         case "Date":
-          setItems(
-            items.sort((a, b) => {
-              return b.timestamp - a.timestamp;
-            })
-          );
+          setItems(items.sort((a, b) => b.timestamp - a.timestamp));
           break;
       }
     }
@@ -47,7 +35,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FilterItems
+      <FilterSection
         filterType={filterType}
         setFilterType={setFilterType}
         items={items}

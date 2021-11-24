@@ -1,6 +1,6 @@
 import React from "react";
 import { Pressable, Text } from "react-native";
-import styles from "./FilterItems.style";
+import styles from "./FilterSection.style";
 
 function FilterButton({ title, filterType, setFilterType, setItems, items }) {
   const changeFilterType = () => {
