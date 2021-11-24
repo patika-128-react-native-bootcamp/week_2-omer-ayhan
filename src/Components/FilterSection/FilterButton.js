@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Pressable, Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import styles from "./FilterSection.style";
 
 function FilterButton({ title, filterType, setFilterType, setItems, items }) {
@@ -20,7 +20,7 @@ function FilterButton({ title, filterType, setFilterType, setItems, items }) {
     }
   };
   return (
-    <Pressable
+    <TouchableOpacity
       style={[
         styles.filter_button,
         filterType === title && styles.button_touch,
@@ -33,7 +33,7 @@ function FilterButton({ title, filterType, setFilterType, setItems, items }) {
         ]}>
         {title}
       </Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 export default memo(FilterButton);

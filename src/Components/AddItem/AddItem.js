@@ -17,16 +17,15 @@ function AddItem({ items, setItems }) {
       timestamp: new Date().getTime(),
     };
 
-    if (!+price) {
-      // checks if price input value is a number
-      Alert.alert("Price has to be a number");
-      return;
-    }
-
     const isDuplicate = items.find(
       (item) => item.title === title && item.price === price // find if there is any duplicate item
     );
     if (title && price && !isDuplicate) {
+      if (!+price) {
+        // checks if price input value is a number
+        Alert.alert("Price has to be a number");
+        return;
+      }
       setItems([...items, newItem]);
       clearFields();
     }
@@ -53,7 +52,7 @@ function AddItem({ items, setItems }) {
       <TouchableOpacity
         style={[styles.button, { marginTop: 15 }]}
         onPress={() => setItems([])}>
-        {/* Test Button */}
+        {/* Only for test purposes */}
         <Text style={styles.button_text}>Clear</Text>
       </TouchableOpacity>
     </View>
