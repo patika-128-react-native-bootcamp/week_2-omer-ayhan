@@ -1,16 +1,34 @@
-import React from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
 import FilterButton from "./FilterButton";
 import styles from "./FilterItems.style";
 
-function FilterItems() {
+function FilterItems({ filterType, setFilterType, setItems, items }) {
   return (
     <View style={styles.container}>
-      <FilterButton title="Asc. Price" />
-      <FilterButton title="Desc. Price" />
-      <FilterButton title="Date" />
+      <FilterButton
+        items={items}
+        setItems={setItems}
+        filterType={filterType}
+        setFilterType={setFilterType}
+        title="Asc"
+      />
+      <FilterButton
+        items={items}
+        setItems={setItems}
+        filterType={filterType}
+        setFilterType={setFilterType}
+        title="Desc"
+      />
+      <FilterButton
+        items={items}
+        setItems={setItems}
+        filterType={filterType}
+        setFilterType={setFilterType}
+        title="Date"
+      />
     </View>
   );
 }
 
-export default FilterItems;
+export default memo(FilterItems);

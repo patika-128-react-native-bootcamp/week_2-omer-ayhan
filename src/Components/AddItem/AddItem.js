@@ -1,20 +1,28 @@
-import React from "react";
+import React, { memo } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import styles from "./AddItem.style";
 
 function AddItem({ items, setItems }) {
   const [title, setTitle] = React.useState("");
   const [price, setPrice] = React.useState("");
-
+  const clearFields = () => {
+    setTitle("");
+    setPrice("");
+  };
   const handleSubmit = () => {
-    const newItem = { id: Date.now(), title, price };
+    const newItem = {
+      id: Date.now().toFixed(3),
+      title,
+      price,
+      timestamp: new Date().getTime(),
+    };
 
     const isDuplicate = items.find(
-      (item) => item.title === title && item.price === price
+      (item) => item.title === title && item.price === price // find if there is any duplicate item
     );
     if (title && price && !isDuplicate) {
-      // add item without duplicates
       setItems([...items, newItem]);
+      clearFields();
     }
   };
   return (
@@ -36,8 +44,14 @@ function AddItem({ items, setItems }) {
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.button_text}>Add</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, { marginTop: 15 }]}
+        onPress={() => setItems([])}>
+        {/* Test Button */}
+        <Text style={styles.button_text}>Clear</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
-export default AddItem;
+export default memo(AddItem);
