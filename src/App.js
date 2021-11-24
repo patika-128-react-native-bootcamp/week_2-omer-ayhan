@@ -30,7 +30,7 @@ export default function App() {
           renderItem={renderItems}
         />
       </View>
-      <AddItem setItems={setItems} />
+      <AddItem items={items} setItems={setItems} />
     </SafeAreaView>
   );
 }
