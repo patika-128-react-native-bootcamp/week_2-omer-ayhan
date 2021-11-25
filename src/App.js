@@ -6,16 +6,16 @@ import ItemList from "./Components/ItemList";
 import filterByType from "./functions/filterByType";
 
 export default function App() {
-  const [priceItems, setPriceItems] = React.useState([]);
+  const [priceItems, setPriceItems] = React.useState([]); // state of our price list items which keeps items as an object array
 
-  const [filterType, setFilterType] = React.useState("Date");
+  const [filterType, setFilterType] = React.useState("Date"); // state of our filter type which keeps the type of filter to decide which sorting function to use
 
-  const renderItems = ({ item }) => <ItemList item={item} />;
-  const extractKey = ({ id }) => id.toString();
-  const itemSeperator = () => <View style={styles.seperator} />;
+  const renderItems = ({ item }) => <ItemList priceItems={item} />; // function to render our items in FlatList component
+  const extractKey = ({ id }) => id.toString(); // function to extract the key of each item in FlatList component for unique identification
+  const itemSeperator = () => <View style={styles.seperator} />; // function to render a seperator between each item in FlatList component
 
   useEffect(() => {
-    let isMounted = true;
+    let isMounted = true; // variable to handle component unmounting
     if (isMounted) {
       // switch (filterType) {
       //   case "Desc":
@@ -28,12 +28,12 @@ export default function App() {
       //     setItems(items.sort((a, b) => b.timestamp - a.timestamp));
       //     break;
       // }
-      filterByType(filterType, priceItems, setPriceItems);
+      filterByType(filterType, priceItems, setPriceItems); // calling function to decide which sort function to use
     }
     return () => {
-      isMounted = false;
+      isMounted = false; // unmounting component
     };
-  }, [priceItems]);
+  }, [priceItems]); // calling useEffect each time a new item is added to the list
 
   return (
     <SafeAreaView style={styles.container}>

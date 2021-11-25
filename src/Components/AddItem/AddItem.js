@@ -18,10 +18,11 @@ function AddItem({ priceItems, setPriceItems }) {
       timestamp: new Date().getTime(),
     };
 
+    // find if there is any duplicate item
     const isDuplicate = priceItems.find(
       (item) =>
         item.title.toUpperCase() === title.toUpperCase() &&
-        item.price.toUpperCase() === price.toUpperCase() // find if there is any duplicate item
+        item.price.toUpperCase() === price.toUpperCase()
     );
     if (title && price && !isDuplicate) {
       if (!+price) {
@@ -29,7 +30,7 @@ function AddItem({ priceItems, setPriceItems }) {
         Alert.alert("Price has to be a number");
         return;
       }
-      setPriceItems([...priceItems, newItem]);
+      setPriceItems([...priceItems, newItem]); // add new item to the list while keeping the original list
       clearFields();
     }
   };

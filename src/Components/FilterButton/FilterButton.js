@@ -12,6 +12,7 @@ function FilterButton({
 }) {
   const changeFilterType = () => {
     if (filterType !== title) {
+      // checking if the filter type is not the same as the title, for preventing the function from running unnecessarily
       //   switch (title) {
       //     case "Asc. Price":
       //       setPriceItems(priceItems.sort((a, b) => a.price - b.price));
@@ -24,20 +25,20 @@ function FilterButton({
       //       break;
       //   }
       filterByType(title, priceItems, setPriceItems);
-      setFilterType(title);
+      setFilterType(title); // setting title as the filter type
     }
   };
   return (
     <TouchableOpacity
       style={[
         styles.filter_button,
-        filterType === title && styles.button_touch,
+        filterType === title && styles.button_touch, // if title is the same as the filter type, then apply given styles
       ]}
       onPress={changeFilterType}>
       <Text
         style={[
           styles.button_text,
-          filterType === title && styles.button_text_touch,
+          filterType === title && styles.button_text_touch, // if title is the same as the filter type, then apply given styles
         ]}>
         {title}
       </Text>
