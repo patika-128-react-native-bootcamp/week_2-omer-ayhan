@@ -52,12 +52,6 @@ function AddItem({ priceItems, setPriceItems }) {
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.button_text}>Add</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.button, { marginTop: 15 }]}
-        onPress={() => setPriceItems([])}>
-        {/* Only for test purposes */}
-        <Text style={styles.button_text}>Clear</Text>
-      </TouchableOpacity>
     </View>
   );
 }
