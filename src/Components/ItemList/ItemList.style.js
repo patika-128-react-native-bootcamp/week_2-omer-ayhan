@@ -6,8 +6,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    borderBottomWidth: 0.95,
-    borderBottomColor: "#e1e1e1",
   },
   text_item: {
     fontSize: 20,
