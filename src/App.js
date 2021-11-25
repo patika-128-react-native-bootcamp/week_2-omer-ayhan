@@ -3,9 +3,10 @@ import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import AddItem from "./Components/AddItem";
 import FilterButton from "./Components/FilterButton";
 import ItemList from "./Components/ItemList";
+import filterByType from "./functions/filterByType";
 
 export default function App() {
-  const [items, setItems] = React.useState([]);
+  const [priceItems, setPriceItems] = React.useState([]);
 
   const [filterType, setFilterType] = React.useState("Date");
 
@@ -16,43 +17,44 @@ export default function App() {
   useEffect(() => {
     let isMounted = true;
     if (isMounted) {
-      switch (filterType) {
-        case "Desc":
-          setItems(items.sort((a, b) => b.price - a.price));
-          break;
-        case "Asc":
-          setItems(items.sort((a, b) => a.price - b.price));
-          break;
-        case "Date":
-          setItems(items.sort((a, b) => b.timestamp - a.timestamp));
-          break;
-      }
+      // switch (filterType) {
+      //   case "Desc":
+      //     setItems(items.sort((a, b) => b.price - a.price));
+      //     break;
+      //   case "Asc":
+      //     setItems(items.sort((a, b) => a.price - b.price));
+      //     break;
+      //   case "Date":
+      //     setItems(items.sort((a, b) => b.timestamp - a.timestamp));
+      //     break;
+      // }
+      filterByType(filterType, priceItems, setPriceItems);
     }
     return () => {
       isMounted = false;
     };
-  }, [items]);
+  }, [priceItems]);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.filter_container}>
         <FilterButton
-          items={items}
-          setItems={setItems}
+          priceItems={priceItems}
+          setPriceItems={setPriceItems}
           filterType={filterType}
           setFilterType={setFilterType}
-          title="Asc"
+          title="Asc. Price"
         />
         <FilterButton
-          items={items}
-          setItems={setItems}
+          priceItems={priceItems}
+          setPriceItems={setPriceItems}
           filterType={filterType}
           setFilterType={setFilterType}
-          title="Desc"
+          title="Desc. Price"
         />
         <FilterButton
-          items={items}
-          setItems={setItems}
+          priceItems={priceItems}
+          setPriceItems={setPriceItems}
           filterType={filterType}
           setFilterType={setFilterType}
           title="Date"
@@ -61,12 +63,12 @@ export default function App() {
       <View style={styles.list_container}>
         <FlatList
           keyExtractor={extractKey}
-          data={items}
+          data={priceItems}
           renderItem={renderItems}
           ItemSeparatorComponent={itemSeperator}
         />
       </View>
-      <AddItem items={items} setItems={setItems} />
+      <AddItem priceItems={priceItems} setPriceItems={setPriceItems} />
     </SafeAreaView>
   );
 }

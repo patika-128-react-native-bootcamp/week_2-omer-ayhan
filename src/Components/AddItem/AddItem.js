@@ -1,10 +1,11 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import styles from "./AddItem.style";
 
-function AddItem({ items, setItems }) {
-  const [title, setTitle] = React.useState("");
-  const [price, setPrice] = React.useState();
+function AddItem({ priceItems, setPriceItems }) {
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState();
+
   const clearFields = () => {
     setTitle("");
     setPrice();
@@ -17,8 +18,10 @@ function AddItem({ items, setItems }) {
       timestamp: new Date().getTime(),
     };
 
-    const isDuplicate = items.find(
-      (item) => item.title === title && item.price === price // find if there is any duplicate item
+    const isDuplicate = priceItems.find(
+      (item) =>
+        item.title.toUpperCase() === title.toUpperCase() &&
+        item.price.toUpperCase() === price.toUpperCase() // find if there is any duplicate item
     );
     if (title && price && !isDuplicate) {
       if (!+price) {
@@ -26,7 +29,7 @@ function AddItem({ items, setItems }) {
         Alert.alert("Price has to be a number");
         return;
       }
-      setItems([...items, newItem]);
+      setPriceItems([...priceItems, newItem]);
       clearFields();
     }
   };
@@ -51,7 +54,7 @@ function AddItem({ items, setItems }) {
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, { marginTop: 15 }]}
-        onPress={() => setItems([])}>
+        onPress={() => setPriceItems([])}>
         {/* Only for test purposes */}
         <Text style={styles.button_text}>Clear</Text>
       </TouchableOpacity>
