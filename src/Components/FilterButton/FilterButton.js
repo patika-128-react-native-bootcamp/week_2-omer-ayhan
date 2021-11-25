@@ -13,17 +13,6 @@ function FilterButton({
   const changeFilterType = () => {
     if (filterType !== title) {
       // checking if the filter type is not the same as the title, for preventing the function from running unnecessarily
-      //   switch (title) {
-      //     case "Asc. Price":
-      //       setPriceItems(priceItems.sort((a, b) => a.price - b.price));
-      //       break;
-      //     case "Desc. Price":
-      //       setPriceItems(priceItems.sort((a, b) => b.price - a.price));
-      //       break;
-      //     case "Date":
-      //       setPriceItems(priceItems.sort((a, b) => b.timestamp - a.timestamp));
-      //       break;
-      //   }
       filterByType(title, priceItems, setPriceItems);
       setFilterType(title); // setting title as the filter type
     }

@@ -17,17 +17,6 @@ export default function App() {
   useEffect(() => {
     let isMounted = true; // variable to handle component unmounting
     if (isMounted) {
-      // switch (filterType) {
-      //   case "Desc":
-      //     setItems(items.sort((a, b) => b.price - a.price));
-      //     break;
-      //   case "Asc":
-      //     setItems(items.sort((a, b) => a.price - b.price));
-      //     break;
-      //   case "Date":
-      //     setItems(items.sort((a, b) => b.timestamp - a.timestamp));
-      //     break;
-      // }
       filterByType(filterType, priceItems, setPriceItems); // calling function to decide which sort function to use
     }
     return () => {
