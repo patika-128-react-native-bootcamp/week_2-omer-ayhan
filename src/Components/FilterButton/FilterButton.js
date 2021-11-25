@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import styles from "./FilterSection.style";
+import styles from "./FilterButton.style";
 
 function FilterButton({ title, filterType, setFilterType, setItems, items }) {
   const changeFilterType = () => {

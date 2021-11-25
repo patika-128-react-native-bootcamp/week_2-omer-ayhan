@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import AddItem from "./Components/AddItem";
-import FilterSection from "./Components/FilterSection";
+import FilterButton from "./Components/FilterButton";
 import ItemList from "./Components/ItemList";
 
 export default function App() {
@@ -11,6 +11,7 @@ export default function App() {
 
   const renderItems = ({ item }) => <ItemList item={item} />;
   const extractKey = ({ id }) => id.toString();
+  const itemSeperator = () => <View style={styles.seperator} />;
 
   useEffect(() => {
     let isMounted = true;
@@ -34,17 +35,35 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FilterSection
-        filterType={filterType}
-        setFilterType={setFilterType}
-        items={items}
-        setItems={setItems}
-      />
+      <View style={styles.filter_container}>
+        <FilterButton
+          items={items}
+          setItems={setItems}
+          filterType={filterType}
+          setFilterType={setFilterType}
+          title="Asc"
+        />
+        <FilterButton
+          items={items}
+          setItems={setItems}
+          filterType={filterType}
+          setFilterType={setFilterType}
+          title="Desc"
+        />
+        <FilterButton
+          items={items}
+          setItems={setItems}
+          filterType={filterType}
+          setFilterType={setFilterType}
+          title="Date"
+        />
+      </View>
       <View style={styles.list_container}>
         <FlatList
           keyExtractor={extractKey}
           data={items}
           renderItem={renderItems}
+          ItemSeparatorComponent={itemSeperator}
         />
       </View>
       <AddItem items={items} setItems={setItems} />
@@ -55,6 +74,17 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  seperator: {
+    borderWidth: 1,
+    borderColor: "#e0e0e0",
+  },
+  filter_container: {
+    flex: 0,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    padding: 10,
   },
   list_container: {
     flex: 1,
