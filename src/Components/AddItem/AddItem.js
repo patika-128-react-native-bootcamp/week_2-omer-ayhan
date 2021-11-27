@@ -1,14 +1,16 @@
-import React, { memo, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import styles from "./AddItem.style";
 
 function AddItem({ priceItems, setPriceItems }) {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState();
+  const titleRef = useRef(null);
+  const priceRef = useRef(null);
 
   const clearFields = () => {
-    setTitle("");
-    setPrice();
+    titleRef.current.clear();
+    priceRef.current.clear();
   };
   const handleSubmit = () => {
     const newItem = {
@@ -38,14 +40,18 @@ function AddItem({ priceItems, setPriceItems }) {
     <View style={styles.container}>
       <View>
         <Text style={styles.input_title}>Name</Text>
-        <TextInput style={styles.input} value={title} onChangeText={setTitle} />
+        <TextInput
+          ref={titleRef}
+          style={styles.input}
+          onChangeText={setTitle}
+        />
       </View>
 
       <View>
         <Text style={styles.input_title}>Price</Text>
         <TextInput
+          ref={priceRef}
           style={styles.input}
-          value={price}
           onChangeText={setPrice}
           keyboardType="number-pad"
         />
