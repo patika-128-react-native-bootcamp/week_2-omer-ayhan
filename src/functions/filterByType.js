@@ -1,4 +1,4 @@
-const filterByType = (type, priceItems, setPriceItems) => {
+const filterByType = (type = "Date", priceItems, setPriceItems) => {
   switch (type) {
     case "Desc. Price": // Descending Price
       setPriceItems(priceItems.sort((a, b) => b.price - a.price));

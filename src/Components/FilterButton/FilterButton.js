@@ -4,8 +4,8 @@ import filterByType from "../../functions/filterByType";
 import styles from "./FilterButton.style";
 
 function FilterButton({
-  title,
-  filterType,
+  title = "Button",
+  filterType = "Date",
   setFilterType,
   setPriceItems,
   priceItems,
