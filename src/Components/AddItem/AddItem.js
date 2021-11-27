@@ -9,6 +9,7 @@ function AddItem({ priceItems, setPriceItems }) {
   const priceRef = useRef(null);
 
   const clearFields = () => {
+    // clear all fields when this function is called
     titleRef.current.clear();
     priceRef.current.clear();
   };
